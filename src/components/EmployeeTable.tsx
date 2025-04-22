@@ -104,7 +104,8 @@ const EmployeeTable = ({ data }: DataTableProps) => {
     const rowVirtualizer = useVirtualizer({
         count: rows.length,
         getScrollElement: () => tableContainerRef.current,
-        estimateSize: () => 35,
+        estimateSize: () => 45,
+        overscan: 5,
     })
 
     const { getVirtualItems, getTotalSize } = rowVirtualizer
@@ -153,7 +154,7 @@ const EmployeeTable = ({ data }: DataTableProps) => {
                     <TableBody>
                         {paddingTop > 0 && (
                             <tr>
-                                <td style={{ height: `${paddingTop}px` }} />
+                                <td style={{ height: `${paddingTop}px` }} colSpan={columns.length} />
                             </tr>
                         )}
                         {getVirtualItems().map((virtualRow) => {
@@ -170,7 +171,7 @@ const EmployeeTable = ({ data }: DataTableProps) => {
                         })}
                         {paddingBottom > 0 && (
                             <tr>
-                                <td style={{ height: `${paddingBottom}px` }} />
+                                <td style={{ height: `${paddingBottom}px` }} colSpan={columns.length} />
                             </tr>
                         )}
                     </TableBody>
